@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tests/pages/cart_page.dart';
 import 'package:tests/pages/home_page.dart';
 import 'package:tests/pages/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,7 +29,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         "/": (context) => LoginPage(),
         MyRoutes.homeRote: (context) => HomePage(),
-        MyRoutes.loginRoute: (context) => LoginPage()
+        MyRoutes.loginRoute: (context) => LoginPage(),
+        MyRoutes.cartRoute: (context) => CartPage()
       },
     );
   }
