@@ -33,15 +33,21 @@ class __CartListState extends State<_CartList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _Cart.items.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        trailing: IconButton(
-            icon: Icon(Icons.remove_circle_outline), onPressed: () {}),
-        title: _Cart.items[index].name.text.make(),
-      ),
-    );
+    return _Cart.items.isEmpty
+        ? "Nothing to show".text.xl3.makeCentered()
+        : ListView.builder(
+            itemCount: _Cart.items.length,
+            itemBuilder: (context, index) => ListTile(
+              leading: Icon(Icons.done),
+              trailing: IconButton(
+                  icon: Icon(Icons.remove_circle_outline),
+                  onPressed: () {
+                    _Cart.remove(_Cart.items[index]);
+                    setState(() {});
+                  }),
+              title: _Cart.items[index].name.text.make(),
+            ),
+          );
   }
 }
 
