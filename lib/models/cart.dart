@@ -1,12 +1,19 @@
 import 'package:tests/models/catalog.dart';
 
 class CartModel {
+  static final cartModel = CartModel._internal();
+
+  CartModel._internal();
+
+  factory CartModel() => cartModel;
+
   CatalogModel _catalog;
   final List<int> _itemIds = [];
 
   CatalogModel get catalog => _catalog;
 
   set catalog(CatalogModel newCatalog) {
+    assert(newCatalog != null);
     this._catalog = newCatalog;
   }
 

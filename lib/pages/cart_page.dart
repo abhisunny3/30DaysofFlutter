@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tests/models/cart.dart';
 import 'package:tests/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -22,15 +23,43 @@ class CartPage extends StatelessWidget {
   }
 }
 
+class _CartList extends StatefulWidget {
+  @override
+  __CartListState createState() => __CartListState();
+}
+
+class __CartListState extends State<_CartList> {
+  final _Cart = CartModel();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: _Cart.items.length,
+      itemBuilder: (context, index) => ListTile(
+        leading: Icon(Icons.done),
+        trailing: IconButton(
+            icon: Icon(Icons.remove_circle_outline), onPressed: () {}),
+        title: _Cart.items[index].name.text.make(),
+      ),
+    );
+  }
+}
+
 class _CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _Cart = CartModel();
+
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$9999".text.xl5.color(context.theme.accentColor).make(),
+          "\$${_Cart.totalPrice}"
+              .text
+              .xl5
+              .color(context.theme.accentColor)
+              .make(),
           30.widthBox,
           ElevatedButton(
                   onPressed: () {
@@ -43,26 +72,6 @@ class _CartTotal extends StatelessWidget {
                   child: "Buy".text.white.make())
               .w32(context)
         ],
-      ),
-    );
-  }
-}
-
-class _CartList extends StatefulWidget {
-  @override
-  __CartListState createState() => __CartListState();
-}
-
-class __CartListState extends State<_CartList> {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        trailing: IconButton(
-            icon: Icon(Icons.remove_circle_outline), onPressed: () {}),
-        title: "Items 1".text.make(),
       ),
     );
   }
