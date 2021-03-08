@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:tests/core/store.dart';
 import 'package:tests/pages/cart_page.dart';
 import 'package:tests/pages/home_page.dart';
 import 'package:tests/pages/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tests/utils/routes.dart';
 import 'package:tests/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(VxState(store: MyStore(), child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
