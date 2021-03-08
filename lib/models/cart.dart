@@ -37,3 +37,14 @@ class AddMutation extends VxMutation<MyStore> {
     store.cart._itemIds.add(items.id);
   }
 }
+
+class RemoveMutation extends VxMutation<MyStore> {
+  final Item items;
+
+  RemoveMutation(this.items);
+
+  @override
+  perform() {
+    store.cart._itemIds.remove(items.id);
+  }
+}
