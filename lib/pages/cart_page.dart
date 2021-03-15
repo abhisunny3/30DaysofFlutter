@@ -28,22 +28,23 @@ class _CartList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VxState.listen(context, to: [RemoveMutation]);
-    final CartModel _Cart = (VxState.store as MyStore).cart;
-    return _Cart.items.isEmpty
+    VxState.listen(context,
+        to: [RemoveMutation]); //  VxState.watch(context, on: [RemoveMutation]);
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    return _cart.items.isEmpty
         ? "Nothing to show".text.xl3.makeCentered()
         : ListView.builder(
-            itemCount: _Cart.items.length,
+            itemCount: _cart.items.length,
             itemBuilder: (context, index) => ListTile(
               leading: Icon(Icons.done),
               trailing: IconButton(
                   icon: Icon(Icons.remove_circle_outline),
                   onPressed: () {
-                    RemoveMutation(_Cart.items[index]);
+                    RemoveMutation(_cart.items[index]);
                     // _Cart.remove(_Cart.items[index]);
                     //setState(() {});
                   }),
-              title: _Cart.items[index].name.text.make(),
+              title: _cart.items[index].name.text.make(),
             ),
           );
   }
@@ -60,14 +61,14 @@ class _CartTotal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           VxBuilder(
+            mutations: {RemoveMutation},
             builder: (context, _) {
-              "\$${_cart.totalPrice}"
+              return "\$${_cart.totalPrice}"
                   .text
                   .xl5
                   .color(context.theme.accentColor)
                   .make();
             },
-            mutations: {RemoveMutation},
           ),
           30.widthBox,
           ElevatedButton(

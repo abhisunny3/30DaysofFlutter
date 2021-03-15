@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tests/models/cart.dart';
 import 'package:tests/widgets/home_widgets/add_to_cart.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import 'package:tests/models/catalog.dart';
 import 'package:tests/pages/home_detail_pager.dart';
-import 'package:tests/widgets/themes.dart';
-
 import 'catalog_image.dart';
 
 class CatalogList extends StatelessWidget {
