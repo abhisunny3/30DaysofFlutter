@@ -28,8 +28,9 @@ class _CartList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VxState.listen(context,
-        to: [RemoveMutation]); //  VxState.watch(context, on: [RemoveMutation]);
+    VxState.watch(context, on: [
+      RemoveMutation
+    ]); //  VxState.listen(context, to: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Nothing to show".text.xl3.makeCentered()
@@ -73,7 +74,7 @@ class _CartTotal extends StatelessWidget {
           30.widthBox,
           ElevatedButton(
                   onPressed: () {
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: "Buying not supported yet.".text.make()));
                   },
                   style: ButtonStyle(
